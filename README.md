@@ -31,3 +31,5 @@ html
 				}
 -. 使用localstorage保存当前页面的选择，保证在下一次进入或者刷新页面选择按钮和选择数量不变
 		var goodObj=localStorage.goods?JSON.parse(localStorage.goods):goods;
+![image](https://github.com/chancejl/test/blob/master/shopcar1.png)
+![image](https://github.com/chancejl/test/blob/master/shopcar2.png)
