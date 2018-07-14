@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+<style>
+    .container{
+        text-align: center;
+    }
+    .container .row{
+        /*height: 100px;*/
+        border: 1px solid #eee;
+    }
+    img{
+        width: 100px;
+        height: 100px;
+        vertical-align: middle;
+    }
+    span{
+        width: 20px;
+        height: 20px;
+        border: 1px solid #999;
+        background:#eee;
+        display:inline-block;
+    }
+    .num{
+        background:transparent;
+        border-left: none;
+        border-right: none;
+    }
+</style>
+</head>
+<body>
+    
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1 col-md-1"  @change="checked">
+                <!-- 用 v-model 指令在表单 <input> 及 <textarea> 元素上创建双向数据绑定 -->
+                <input type="checkbox" id="none" value="false" ref="checkBox_"  >
+                <label for="none">全选</label>
+            </div>
+            <div class="col-lg-1 col-md-1">序号</div>
+            <div class="col-lg-3 col-md-3">图片</div>
+            <div class="col-lg-3 col-md-3">价格</div>
+            <div class="col-lg-2 col-md-2">数量</div>
+            <div class="col-lg-2 col-md-2">金额</div>
+        </div>
+        <!-- v-for循环 -->
+        <div class="row" v-for="(good,index) in data_">
+            <div class="col-lg-1 col-md-1" @change="check_isAll">
+            <input type="checkbox" v-model="good.checked">
+        </div>
+        <div class="col-lg-1 col-md-1">{{index+1}}</div>
+        <div class="col-lg-3 col-md-3">
+            <img :src="good.img" alt="">
+        </div>
+        <div class="col-lg-3 col-md-3">{{good.price}}</div>
+        <div class="col-lg-2 col-md-2">
+            <span @click="good.num<1?0:good.num--">-</span><span class="num" contenteditable="true">{{good.num}}</span><span @click="good.num++">+</span>
+        </div>
+        <!-- 计算出当前选项总金额 -->
+        <div class="col-lg-2 col-md-2">{{good.price * good.num}}</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6"></div>
+            <!-- 使用calc()进行选择件数和进行总价的计算 -->
+            <div class="col-lg-3 col-md-3">
+                共选择了<span>{{calc().cnt}}</span>件商品
+            </div>
+            <div class="col-lg-3 col-md-3">
+                总计<span>{{calc().totalPrice}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="vue2.0.js"></script>
+<script src="shopcar.js"></script>
+</body>
+</html>
